@@ -27,18 +27,18 @@ var Card = function(url, color){
 }
 
 //build card
-function buildCard(card) {
-  var div = document.createElement(card.wrapper);
-  div.className = card.class;
+Card.prototype.addToContainer = function() {
+  var div = document.createElement(this.wrapper);
+  div.className = this.class;
   var img = document.createElement("img");
-  img.src = card.url;
+  img.src = this.url;
   div.appendChild(img);
-  card.container.appendChild(div);
-  return '1'
+  div.style.backgroundColor = this.color;
+  this.container.appendChild(div);
 }
 
 //urls of images
-var imageUrls = [
+var globalUrls = [
   'assets/image1.jpg',
   'assets/image2.jpg',
   'assets/image3.jpg',
@@ -48,15 +48,27 @@ var imageUrls = [
 ];
 
 
-//render cards on page 
-function renderCards(imageUrls, numOfCards, color){
-  for (var i=0; i < numOfCards; i++){
-    var card = new Card(imageUrls[randomNumber(imageUrls.length)], color || generateColor());
-    buildCard(card);
+function shuffleCards(array){
+  var shuffled = [];
+  console.log(array.length)
+  for(var i = array.length; i > 0; i--){
+    var index = randomNumber(array.length);
+    shuffled.push(array[index]); 
+    array.splice(index, 1);
+  }
+  return shuffled;
+}
 
+
+function renderCards(urls, numOfCards, color){
+  for (var i=0; i < numOfCards; i++){
+    var card = new Card(urls[i], color || generateColor());
+    card.addToContainer();
   }
 }
-renderCards(imageUrls, 5)
+
+
+renderCards(shuffleCards(globalUrls), 5)
 //event if clicked card
 
 //array for tow cards
