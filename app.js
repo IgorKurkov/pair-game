@@ -28,13 +28,21 @@ var Card = function(url, color){
 
 //build card
 Card.prototype.addToContainer = function() {
-  var div = document.createElement(this.wrapper);
-  div.className = this.class;
-  var img = document.createElement("img");
-  img.src = this.url;
-  div.appendChild(img);
-  div.style.backgroundColor = this.color;
-  this.container.appendChild(div);
+  var wrapper = document.createElement(this.wrapper);
+  wrapper.className = this.class;
+  // wrapper.style.width = "calc(1/4*100% - (1 - 1/4)*10px)";
+
+  var front = document.createElement("div");
+  front.className = "front";
+  front.style.backgroundImage = "url('"+ this.url +"')";
+
+  var back = document.createElement("div");
+  back.className = "back";
+  back.style.backgroundColor = this.color;
+
+  wrapper.appendChild(back);
+  wrapper.appendChild(front);
+  this.container.appendChild(wrapper);
 }
 
 //urls of images
@@ -49,13 +57,21 @@ var globalUrls = [
 
 
 function shuffleCards(array){
+  array = array.concat(array);
+  console.log(array)
   var shuffled = [];
   console.log(array.length)
   for(var i = array.length; i > 0; i--){
-    var index = randomNumber(array.length);
+    var index = array.length == 1 ? 0 : randomNumber(array.length);
     shuffled.push(array[index]); 
     array.splice(index, 1);
+    // console.log(array[index])
+    // console.log("array.length = "+array.length)
+    // console.log("index = "+index)
+    // console.log("i = "+i)
+    // console.log("===========")
   }
+  console.log(shuffled)
   return shuffled;
 }
 
@@ -68,7 +84,7 @@ function renderCards(urls, numOfCards, color){
 }
 
 
-renderCards(shuffleCards(globalUrls), 5)
+renderCards(shuffleCards(globalUrls), 12)
 //event if clicked card
 
 //array for tow cards

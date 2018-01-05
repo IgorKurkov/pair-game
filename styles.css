@@ -2,17 +2,81 @@ body {
   text-align: center;
 }
 #container {
-  width: 100%;
+  min-width: 950px;
+  margin: 0 auto;
+  width: 70%;
   height: 80vh;
   display: flex;
-  /* flex-direction: row; */
-  /* flex-wrap: nowrap; */
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 
 }
 .card {
-  width: 25%;
-  height: 22%;
+  /* outline: 1px solid black; */
+  perspective: 1000px;
+
+  border-radius: 5px;
+  box-sizing: border-box;
+  width: calc(1/4*100% - (1 - 1/4)*10px);
+  margin-bottom: 5px;
 }
-.card img {
+.card .front, .card .back {
+  background-size: cover;
   width: 100%;
+  height: 100%;
+  
+}
+.card .back {
+  border-radius: 50%;
+}
+
+/*******************************/
+/* for flip */
+/* entire container, keeps perspective */
+.card {
+	perspective: 1000px;
+}
+	/* flip the pane when hovered */
+#card:hover, card.hover {
+  transform: rotateY(180deg);
+}
+
+/* .front, .back {
+	width: 320px;
+	height: 480px;
+} */
+
+/* flip speed goes here */
+.card {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+	/* for firefox 31 */
+
+  transform: rotateY(180deg);
+}
+
+/* back, initially hidden pane */
+.back {
+  transform: rotateY(0deg);
+}
+
+.card:hover, .card.hover  {
+	transform: rotateY(180deg);
 }
