@@ -20,34 +20,37 @@
       <label class="switch">
         <input type="checkbox" id="colored">
         <div class="slider round">
-          <span class="on">COLORED</span>
-          <span class="off">COLORED</span>
+         <span class="on">COLORED</span>
+         <span class="off">COLORED</span>
         </div>
       </label>
       <label class="switch">
-          <input type="checkbox" id="shuffle">
-          <div class="slider round">
-            <span class="on">FORCED</span>
-            <span class="off">FORCED</span>
-          </div>
-        </label>
+        <input type="checkbox" id="shuffle">
+        <div class="slider round">
+          <span class="on">FORCED</span>
+          <span class="off">FORCED</span>
+        </div>
+      </label>
     </div>
 
     <div id="score">
       <div class="score-table">
-        <div class="count-points">CLICKS: <span class="count-clicks-el">0</span></div>
-        <div class="count-clicks">SCORE: <span class="count-clicks-el">0</span></div>
+        <div class="count-clicks">CLICKS: <span id="count-clicks-el">0</span></div>
+        <div class="count-score">SCORE: <span id="count-score-el">0</span></div>
       </div>
     </div>
   </div>
-  <div class="modal-winner">You win!</div>
+
+  <div id="modal-winner">You win!</div>
+
   <div id="container"></div>
   
-<footer>
-  <center> Drawed with excitement by 
-    <a target="_blank" href="https://github.com/IgorKurkov">IgorKurkov</a>
-  </center>
-</footer>
+  <footer>
+    <center> Drawed with excitement by 
+      <a target="_blank" href="https://github.com/IgorKurkov">IgorKurkov</a>
+    </center>
+  </footer>
+
   <script src="js/shuffle/shuffle.js"></script>
   <script src="js/app.js"></script>
 </body>

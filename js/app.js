@@ -8,8 +8,9 @@ var closingCardsDelay = 800;
 var defaultCardColor = "#C6C"; 
 var cardsCount = 12;
 var container = document.getElementById("container");
-
-
+var modalWinner = document.getElementById("modal-winner");
+var score = 0;
+var clicks = 0;
 
 
 //generate random color
@@ -109,10 +110,10 @@ function isColored(e){
     renderCards(shuffleCards(globalUrls), cardsCount, defaultCardColor);
    } 
 }
+
 var timer;
 function isForcedSuffling(e){
-  
-  if(e.target.id == "shuffle" && e.srcElement.checked ) { 
+  if (e.target.id == "shuffle" && e.srcElement.checked ) { 
     $('#container').shuffle({
       times: 1, // durations: [500, 650, 750, 500, 900]
     }); 
@@ -121,23 +122,34 @@ function isForcedSuffling(e){
       timer = setInterval("$('#container').shuffle()", 4000);
     });
   } 
-
-   if(e.target.id == "shuffle" && !e.srcElement.checked ){
+   if (e.target.id == "shuffle" && !e.srcElement.checked ){
      clearInterval(timer);
      renderCards(shuffleCards(globalUrls), cardsCount, defaultCardColor);
    }
 }
-
+function plusClick(){
+  document.getElementById("count-clicks-el").innerHTML = ++clicks;
+}
+function plusScore(){
+  document.getElementById("count-score-el").innerHTML = ++score;
+}
+function checkVictory(){
+  if(document.getElementsByClassName("hide-finished").length == 12) { 
+    modalWinner.style.display = "block"; 
+    setTimeout(function(){ modalWinner.style.display = "none"; }, 1000);
+  }
+}
 var selected = [];
 document.addEventListener("click", function(event){
   //check controls
   isColored(event);
-  isForcedSuffling(event)
+  isForcedSuffling(event);
 
   if(!allowClicks && event.target.id != "container") { 
     event.target.style.animation = "effect_disabled_clicks 0.3s ease-out";
   }
   if(allowClicks && event.target.classList.contains("back")) {
+    plusClick();
     debug(event);
     var el = event.target.parentNode;
     debug(el.attributes.data.nodeValue);
@@ -149,11 +161,14 @@ document.addEventListener("click", function(event){
     if (selected.length === 2) {
       if (selected[0].attributes.data.nodeValue === selected[1].attributes.data.nodeValue) {
         doWithCards(selected[0], selected[1], classMatch, "Matched!");
+        plusScore();
       } else {
         doWithCards(selected[0], selected[1], classNotMatch, "Not matched");
       }
     }
   }
+  
+});
 
 function doWithCards(first, second, className, message){
   debug(message || "");
@@ -161,19 +176,17 @@ function doWithCards(first, second, className, message){
   setTimeout(function(){
     first.classList.toggle(className);
     second.classList.toggle(className);
-    
+    checkVictory();
     selected = [];
+
     setTimeout(function(){
       allowClicks = true;
     }, 300)
   }, closingCardsDelay);
+  
 }
-
-});
-
-//colored
-//shuffle
-//score
-//win if it is no cards
-//buttons new game
-//pretty booleans toggles
+//transparent images  - change jpg to png
+//win box - listen for hide
+//new game checkbox
+//fb share
+//count score, clicks
