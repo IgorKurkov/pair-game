@@ -66,7 +66,7 @@ h1 {
 
 footer {
   position: absolute;
-  bottom: 0;
+  bottom: 5px;
   left: 40%;
   margin: 0 auto;
   font-size: 14px;

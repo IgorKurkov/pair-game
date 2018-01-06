@@ -139,10 +139,11 @@ function plusScore(){
 function checkVictory(){
   if(document.getElementsByClassName("hide-finished").length == 12) { 
     modalWinner.style.display = "block"; 
-    modalWinner.style.animation = "effect_disabled_clicks 0.8s ease-out";
+    // modalWinner.style.animation = "effect_disabled_clicks 0.8s ease-out";
     setTimeout(function(){ 
       modalWinner.style.display = "none"; 
-      modalWinner.style.animation = "inherit";
+      // modalWinner.style.animation = "inherit";
+      renderCards(shuffleCards(globalUrls), cardsCount, defaultCardColor);
     }, 1000);
   }
 }
@@ -193,9 +194,3 @@ function doWithCards(first, second, className, message){
   }, closingCardsDelay);
   
 }
-//jpg to png
-//fb share
-//add more cards
-//add different card's counts
-//refactoring 
-//https://codepen.io/doggard/pen/dXYzjW

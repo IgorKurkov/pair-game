@@ -1,14 +1,24 @@
-☐ class for card
-☐ shuffle
-☐ array for inserting pair
-☐ event delegate
-☐ flip css 
-☐ delay for clicks
-
-☐ controls for easy - hard
-☐ score - points for each vin pair
-☐ hard level with visuality shuffling cards
-☐ effect for putting cards to surface
-☐ count steps
+✔ class for card @done (2018-1-6 14:44:22)
+✔ shuffle @done (2018-1-6 14:44:25)
+✔ array for inserting pair @done (2018-1-6 14:44:26)
+✔ event delegate @done (2018-1-6 14:44:27)
+✔ flip css @done (2018-1-6 14:44:28)
+✔ delay for clicks @done (2018-1-6 14:44:29)
+✔ controls for easy - hard @done (2018-1-6 14:44:32)
+✔ score - points for each vin pair @done (2018-1-6 14:44:33)
+✔ hard level with visuality shuffling cards @done (2018-1-6 14:44:34)
+✔ effect for putting cards to surface @done (2018-1-6 14:44:39)
+✔ count steps @done (2018-1-6 14:44:41)
 ☐ score for double revolving
-☐ effexts when win
+✔ effexts when win @done (2018-1-6 14:44:50)
+✔ jpg to png @done (2018-1-6 14:45:54)
+☐ fb share
+☐ add more cards
+☐ add different card's counts
+☐ refactoring
+☐ clean up code 
+☐ adapt for mobile devices
+✔ gh-pages @done (2018-1-6 14:46:47)
+
+sources:
+https://codepen.io/doggard/pen/dXYzjW
