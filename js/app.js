@@ -69,12 +69,12 @@ Card.prototype.addToContainer = function() {
 
 //urls of images
 var globalUrls = [
-  'assets/image1.jpg',
-  'assets/image2.jpg',
-  'assets/image3.jpg',
-  'assets/image4.jpg',
-  'assets/image5.jpg',
-  'assets/image6.jpg'
+  'assets/image1.png',
+  'assets/image2.png',
+  'assets/image3.png',
+  'assets/image4.png',
+  'assets/image5.png',
+  'assets/image6.png'
 ];
 
 
@@ -193,7 +193,9 @@ function doWithCards(first, second, className, message){
   }, closingCardsDelay);
   
 }
-//transparent images  - change jpg to png
-//new game checkbox
+//jpg to png
 //fb share
+//add more cards
+//add different card's counts
+//refactoring 
 //https://codepen.io/doggard/pen/dXYzjW
