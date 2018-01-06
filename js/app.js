@@ -1,10 +1,11 @@
 //settings
-var debugging = true;
+var debugging = false; 
 var allowClicks = true;
 var classMatch = "hide-finished";
 var classNotMatch = "close";
 var transitionSpeed = "0.6s";
-var closingCardsDelay = 800;
+var closingCardsDelay = 600;
+var shuffleDelay = 2500;
 var defaultCardColor = "#C6C"; 
 var cardsCount = 12;
 var container = document.getElementById("container");
@@ -92,19 +93,21 @@ function shuffleCards(array){
 
 function renderCards(urls, numOfCards, color){
   container.innerHTML = "";
+  container.style.animation = "effect_disabled_clicks 0.5s ease-out";
   for (var i = 0; i < numOfCards; i++){
-    // var card = new Card(urls[i], i+1, !isColoredActivated ? color : generateColor());
-
     var card = new Card(urls[i], i+1, color || generateColor());
     card.addToContainer();
   }
+  setTimeout(function(){ container.style.animation = "inherit"; }, 500);
 }
+
 renderCards(shuffleCards(globalUrls), cardsCount, defaultCardColor)
 
 //controls
 function isColored(e){
   if(e.target.id == "colored" && e.srcElement.checked ) { 
     renderCards(shuffleCards(globalUrls), cardsCount);
+    
    } 
    if(e.target.id == "colored" && !e.srcElement.checked ) { 
     renderCards(shuffleCards(globalUrls), cardsCount, defaultCardColor);
@@ -114,12 +117,9 @@ function isColored(e){
 var timer;
 function isForcedSuffling(e){
   if (e.target.id == "shuffle" && e.srcElement.checked ) { 
-    $('#container').shuffle({
-      times: 1, // durations: [500, 650, 750, 500, 900]
-    }); 
-
+    $('#container').shuffle({ times: 1, /* durations: [500, 650, 750, 500, 900] */ }); 
     $(document).ready(function() {
-      timer = setInterval("$('#container').shuffle()", 4000);
+      timer = setInterval("$('#container').shuffle()", shuffleDelay);
     });
   } 
    if (e.target.id == "shuffle" && !e.srcElement.checked ){
@@ -127,18 +127,26 @@ function isForcedSuffling(e){
      renderCards(shuffleCards(globalUrls), cardsCount, defaultCardColor);
    }
 }
+
 function plusClick(){
   document.getElementById("count-clicks-el").innerHTML = ++clicks;
 }
+
 function plusScore(){
   document.getElementById("count-score-el").innerHTML = ++score;
 }
+
 function checkVictory(){
   if(document.getElementsByClassName("hide-finished").length == 12) { 
     modalWinner.style.display = "block"; 
-    setTimeout(function(){ modalWinner.style.display = "none"; }, 1000);
+    modalWinner.style.animation = "effect_disabled_clicks 0.8s ease-out";
+    setTimeout(function(){ 
+      modalWinner.style.display = "none"; 
+      modalWinner.style.animation = "inherit";
+    }, 1000);
   }
 }
+
 var selected = [];
 document.addEventListener("click", function(event){
   //check controls
@@ -186,7 +194,6 @@ function doWithCards(first, second, className, message){
   
 }
 //transparent images  - change jpg to png
-//win box - listen for hide
 //new game checkbox
 //fb share
-//count score, clicks
+//https://codepen.io/doggard/pen/dXYzjW
